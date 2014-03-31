@@ -1,6 +1,6 @@
 {
   "name": "digest-header",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Digest access authentication header helper",
   "main": "index.js",
   "scripts": {
