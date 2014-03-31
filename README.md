@@ -9,6 +9,8 @@ digest-header
 
 Digest access authentication header helper.
 
+Coverage [100%](http://qtestbucket.qiniudn.com/cov/html/node-v0.11.12/digest-header/0.0.0/index.html)
+
 ## Install
 
 ```bash

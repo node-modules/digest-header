@@ -12,16 +12,16 @@
     }
   },
   "dependencies": {
-
+    "utility": "0.1.11"
   },
   "devDependencies": {
     "autod": "*",
     "contributors": "*",
-    "should": "*",
-    "jshint": "*",
     "cov": "*",
     "istanbul-harmony": "*",
-    "mocha": "*"
+    "jshint": "*",
+    "mocha": "*",
+    "should": "3.2.0"
   },
   "homepage": "https://github.com/fengmk2/digest-header",
   "repository": {
