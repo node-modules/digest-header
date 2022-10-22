@@ -1,18 +1,4 @@
-/**!
- * digest-header - test/index.test.js
- *
- * Copyright(c) 2014 fengmk2 and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)
- */
-
 "use strict";
-
-/**
- * Module dependencies.
- */
 
 var should = require('should');
 var digestAuthHeader = require('../');
@@ -62,15 +48,4 @@ describe('index.test.js', function () {
     var header = digestAuthHeader('GET', '/', auth, 'user1:pass1');
     header.should.equal('');
   });
-
-  // it('should sum the response as chrome', function () {
-  //   // Authorization:Digest username="user", realm="me@kennethreitz.com",
-  //   // nonce="e2b5c8057c85ec1ea22339aff3a1f411", uri="/digest-auth/auth/user/passwd",
-  //   // response="ff708534be81a3998a56014457f14cc1",
-  //   // opaque="1e111b7029d7e1ce29a51ceb57f1753b", qop=auth, nc=00000001, cnonce="4d05d72eab7bb9f6"
-  //   var auth = 'Digest username="user", realm="me@kennethreitz.com", nonce="e2b5c8057c85ec1ea22339aff3a1f411", uri="/digest-auth/auth/user/passwd", response="ff708534be81a3998a56014457f14cc1", opaque="1e111b7029d7e1ce29a51ceb57f1753b", qop=auth, nc=00000001, cnonce="4d05d72eab7bb9f6"';
-  //   var header = digestAuthHeader('GET', '/digest-auth/auth/user/passwd',
-  //     auth, 'user:passwd', {nc: '00000001', cnonce: '4d05d72eab7bb9f6'});
-  //   header.should.equal(auth);
-  // });
 });

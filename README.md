@@ -1,20 +1,12 @@
 digest-header
 =======
 
-[![Build Status](https://secure.travis-ci.org/fengmk2/digest-header.png)](http://travis-ci.org/fengmk2/digest-header) [![Dependency Status](https://gemnasium.com/fengmk2/digest-header.png)](https://gemnasium.com/fengmk2/digest-header)
-
-[![NPM](https://nodei.co/npm/digest-header.png?downloads=true&stars=true)](https://nodei.co/npm/digest-header/)
-
-![logo](https://raw.github.com/fengmk2/digest-header/master/logo.png)
-
 Digest access authentication header helper.
-
-Coverage [100%](http://qtestbucket.qiniudn.com/cov/html/node-v0.11.12/digest-header/0.0.0/index.html)
 
 ## Install
 
 ```bash
-$ npm install digest-header
+npm install digest-header
 ```
 
 ## Usage
