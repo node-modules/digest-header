@@ -1,6 +1,8 @@
 digest-header
 =======
 
+[![Node.js CI](https://github.com/node-modules/digest-header/actions/workflows/nodejs.yml/badge.svg)](https://github.com/node-modules/digest-header/actions/workflows/nodejs.yml)
+
 Digest access authentication header helper.
 
 ## Install
