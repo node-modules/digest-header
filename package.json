@@ -16,7 +16,6 @@
   "devDependencies": {
     "contributors": "*",
     "egg-bin": "^4.20.0",
-    "egg-ci": "^1.19.1",
     "should": "3.2.0"
   },
   "homepage": "https://github.com/node-modules/digest-header",
@@ -40,13 +39,6 @@
   ],
   "engines": {
     "node": ">= 8.0.0"
-  },
-  "ci": {
-    "version": "8, 10, 12, 14, 16, 18",
-    "type": "github",
-    "os": {
-      "github": "linux"
-    }
   },
   "author": "fengmk2 <fengmk2@gmail.com> (https://github.com/fengmk2)",
   "license": "MIT"
