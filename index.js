@@ -53,7 +53,13 @@ function digestAuthHeader(method, uri, wwwAuthenticate, userpass) {
   nc = NC_PAD.substring(nc.length) + nc;
   var cnonce = crypto.randomBytes(8).toString('hex');
 
-  var ha1 = utility.md5(userpass[0] + ':' + opts.realm + ':' + userpass[1]);
+  var ha1;
+  if(opts.algorithm === 'MD5-sess') {
+      ha1 = utility.md5(utility.md5(userpass[0] + ':' + opts.realm + ':' + userpass[1]) + ':' + opts.nonce + ':' + cnonce);
+  }
+  else {
+      ha1 = utility.md5(userpass[0] + ':' + opts.realm + ':' + userpass[1]);
+  }
   var ha2 = utility.md5(method.toUpperCase() + ':' + uri);
   var s = ha1 + ':' + opts.nonce;
   if (qop) {
@@ -64,7 +70,8 @@ function digestAuthHeader(method, uri, wwwAuthenticate, userpass) {
   var response = utility.md5(s);
   var authstring = 'Digest username="' + userpass[0] + '", realm="' + opts.realm
     + '", nonce="' + opts.nonce + '", uri="' + uri
-    + '", response="' + response + '"';
+    + '", algorithm=' + opts.algorithm
+    + ', response="' + response + '"';
   if (opts.opaque) {
     authstring += ', opaque="' + opts.opaque + '"';
   }
