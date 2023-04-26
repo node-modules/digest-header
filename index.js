@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-const AUTH_KEY_VALUE_RE = /(\w+)=["']?([^'"]+)["']?/;
+const AUTH_KEY_VALUE_RE = /(\w+)=["']?([^'"]{1,10000})["']?/;
 let NC = 0;
 const NC_PAD = '00000000';
 
@@ -12,7 +12,7 @@ function digestAuthHeader(method, uri, wwwAuthenticate, userpass) {
   const parts = wwwAuthenticate.split(',');
   const opts = {};
   for (let i = 0; i < parts.length; i++) {
-    const m = parts[i].match(AUTH_KEY_VALUE_RE);
+    const m = AUTH_KEY_VALUE_RE.exec(parts[i]);
     if (m) {
       opts[m[1]] = m[2].replace(/["']/g, '');
     }
