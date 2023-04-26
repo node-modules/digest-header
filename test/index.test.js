@@ -1,7 +1,5 @@
-"use strict";
-
-var should = require('should');
-var digestAuthHeader = require('../');
+require('should');
+const digestAuthHeader = require('../');
 
 describe('index.test.js', function () {
   it('should create auth header', function () {

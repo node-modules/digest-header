@@ -1,17 +1,18 @@
-'use strict';
+const crypto = require('crypto');
 
-var crypto = require('crypto');
-var utility = require('utility');
+const AUTH_KEY_VALUE_RE = /(\w+)=["']?([^'"]{1,10000})["']?/;
+let NC = 0;
+const NC_PAD = '00000000';
 
-var AUTH_KEY_VALUE_RE = /(\w+)=["']?([^'"]+)["']?/;
-var NC = 0;
-var NC_PAD = '00000000';
+function md5(text) {
+  return crypto.createHash('md5').update(text).digest('hex');
+}
 
 function digestAuthHeader(method, uri, wwwAuthenticate, userpass) {
-  var parts = wwwAuthenticate.split(',');
-  var opts = {};
-  for (var i = 0; i < parts.length; i++) {
-    var m = parts[i].match(AUTH_KEY_VALUE_RE);
+  const parts = wwwAuthenticate.split(',');
+  const opts = {};
+  for (let i = 0; i < parts.length; i++) {
+    const m = AUTH_KEY_VALUE_RE.exec(parts[i]);
     if (m) {
       opts[m[1]] = m[2].replace(/["']/g, '');
     }
@@ -21,7 +22,7 @@ function digestAuthHeader(method, uri, wwwAuthenticate, userpass) {
     return '';
   }
 
-  var qop = opts.qop || '';
+  let qop = opts.qop || '';
 
   // WWW-Authenticate: Digest realm="testrealm@host.com",
   //                       qop="auth,auth-int",
@@ -49,20 +50,20 @@ function digestAuthHeader(method, uri, wwwAuthenticate, userpass) {
   //           = 6629fae49393a05397450978507c4ef1
   userpass = userpass.split(':');
 
-  var nc = String(++NC);
+  let nc = String(++NC);
   nc = NC_PAD.substring(nc.length) + nc;
-  var cnonce = crypto.randomBytes(8).toString('hex');
+  const cnonce = crypto.randomBytes(8).toString('hex');
 
-  var ha1 = utility.md5(userpass[0] + ':' + opts.realm + ':' + userpass[1]);
-  var ha2 = utility.md5(method.toUpperCase() + ':' + uri);
-  var s = ha1 + ':' + opts.nonce;
+  const ha1 = md5(userpass[0] + ':' + opts.realm + ':' + userpass[1]);
+  const ha2 = md5(method.toUpperCase() + ':' + uri);
+  let s = ha1 + ':' + opts.nonce;
   if (qop) {
     qop = qop.split(',')[0];
     s += ':' + nc + ':' + cnonce + ':' + qop;
   }
   s += ':' + ha2;
-  var response = utility.md5(s);
-  var authstring = 'Digest username="' + userpass[0] + '", realm="' + opts.realm
+  const response = md5(s);
+  let authstring = 'Digest username="' + userpass[0] + '", realm="' + opts.realm
     + '", nonce="' + opts.nonce + '", uri="' + uri
     + '", response="' + response + '"';
   if (opts.opaque) {
